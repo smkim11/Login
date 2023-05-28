@@ -15,7 +15,7 @@ function kakaoLogin() {
     Kakao.Auth.login({
       success: function (response) {
         Kakao.API.request({
-          url: 'https://localhost:8080',
+          url: 'https://web.kangnam.ac.kr/',
           success: function (response) {
         	  console.log(response)
           },
