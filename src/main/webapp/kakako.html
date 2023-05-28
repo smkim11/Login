@@ -15,7 +15,7 @@ function kakaoLogin() {
     Kakao.Auth.login({
       success: function (response) {
         Kakao.API.request({
-          url: '/v2/user/me',
+          url: 'https://localhost:8080',
           success: function (response) {
         	  console.log(response)
           },

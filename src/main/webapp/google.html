@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name ="google-signin-client_id" content="517457724079-f78ii2ijbg654105i1a3k45g62jd4k29.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="517457724079-f78ii2ijbg654105i1a3k45g62jd4k29.apps.googleusercontent.com">
 </head>
 <body>
 <ul>
  <li id="GgCustomLogin">
-  <a href="https://accounts.google.com/signin/oauth/oauthchooseaccount?client_id=517457724079-f78ii2ijbg654105i1a3k45g62jd4k29.apps.googleusercontent.com&response_type=code&redirect_uri=http://localhost:8080/Login/google.html&scope=profile%20email&access_type=offline">
+  <a href="https://accounts.google.com/signin/oauth/oauthchooseaccount?client_id=517457724079-f78ii2ijbg654105i1a3k45g62jd4k29.apps.googleusercontent.com&response_type=code&redirect_uri=https://web.kangnam.ac.kr/&scope=profile%20email&access_type=offline">
    <span>Google login</span>
   </a>
  </li>
@@ -14,34 +14,34 @@
 <script>
 
 function init() {
-	gapi.load('auth2', function() {
-		gapi.auth2.init();
-		options = new gapi.auth2.SigninOptionsBuilder();
-		options.setPrompt('select_account');
-		options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
-		gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
-	})
+  gapi.load('auth2', function() {
+    gapi.auth2.init();
+    options = new gapi.auth2.SigninOptionsBuilder();
+    options.setPrompt('select_account');
+    options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+    gapi.auth2.getAuthInstance().attachClickHandler(document.getElementById('GgCustomLogin'), options, onSignIn, onSignInFailure);
+  })
 }
 
 function onSignIn(googleUser) {
-	var access_token = googleUser.getAuthResponse().access_token
-	$.ajax({
-		url: 'https://people.googleapis.com/v1/people/me'
-		, data: {personFields:'birthdays', key:'AIzaSyB73vXplvasgFdZCNNYXE6RebwI0gGqPjE', 'access_token': access_token}
-		, method:'GET'
-	})
-	.done(function(e){
+	  var access_token = googleUser.getAuthResponse().access_token;
+	  $.ajax({
+	    url: 'https://people.googleapis.com/v1/people/me',
+	    data: { personFields: 'birthdays,names', key: 'AIzaSyB73vXplvasgFdZCNNYXE6RebwI0gGqPjE', access_token: access_token },
+	    method: 'GET'
+	  })
+	  .done(function(e) {
+	    var profile = googleUser.getBasicProfile();
+			console.log(e.birthdays);
+		})
+		.fail(function(e){
+			console.log(e);
+		})
+	}
+	function onSignInFailure(t){		
+		console.log(t);
+	}
 
-		var profile = googleUser.getBasicProfile();
-		console.log(profile)
-	})
-	.fail(function(e){
-		console.log(e);
-	})
-}
-function onSignInFailure(t){		
-	console.log(t);
-}
 </script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
