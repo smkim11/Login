@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Test Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+    <style>
+        body {
+            display: baseline;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            text-align: center;
+        }
+
+        .login-title {
+            margin-bottom: 20px;
+        }
+
+        .login-images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .login-images a {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="login-title">로그인</h1>
+        
+        
+        <div class="login-images">
+            <a href="https://accounts.google.com/o/oauth2/v2/auth?
+					client_id=194145741373-025mrftl057o72p96u162ppmibk1kniq.apps.googleusercontent.com
+					&redirect_uri=http://localhost:8080/login/oauth2/code/google
+					&response_type=code
+					&scope=email%20profile
+					&access_type=offline"><img src="img/btn_google_login.png" width="400" height="100">
+            </a>
+            <a href="https://kauth.kakao.com/oauth/authorize
+                ?client_id=b9bfae0b7d3aa7358e9431fd08904d5c
+                &redirect_uri=http://localhost:8080/auth/kakao/callback
+                &response_type=code">
+                <img src="img/kakao_login_button.png" width="400" height="100">
+            </a>
+            <a href="https://nid.naver.com/oauth2.0/authorize
+					?response_type=code
+					&client_id=Z8a2Pjd9a6NStfUqAYHF
+					&state=state
+					&redirect_uri=http://localhost:8080/auth/naver/callback">
+                <img src="img/btn_naver_login.png" width="400" height="100">
+            </a>
+        </div>
+    </div>
+</body>
+</html>
